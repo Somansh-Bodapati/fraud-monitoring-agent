@@ -1,0 +1,36 @@
+<div class="dashboard-container">
+  <h1>Dashboard</h1>
+
+  <div *ngIf="loading" class="loading">Loading dashboard...</div>
+
+  <div *ngIf="!loading && stats" class="stats-grid">
+    <mat-card>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.transactions?.total || 0 }}</div>
+        <div class="stat-label">Total Transactions</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-content>
+        <div class="stat-value">${{ (stats.transactions?.totalAmount || 0).toFixed(2) }}</div>
+        <div class="stat-label">Total Amount</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-content>
+        <div class="stat-value error">{{ stats.transactions?.anomalies || 0 }}</div>
+        <div class="stat-label">Anomalies</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-content>
+        <div class="stat-value warning">{{ stats.alerts?.unread || 0 }}</div>
+        <div class="stat-label">Unread Alerts</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>Add New Transaction</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="transactionForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Amount *</mat-label>
+      <input matInput type="number" formControlName="amount" step="0.01" required>
+      <mat-icon matPrefix>attach_money</mat-icon>
+      <mat-error *ngIf="transactionForm.get('amount')?.hasError('required')">
+        Amount is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Merchant</mat-label>
+      <input matInput formControlName="merchant">
+      <mat-icon matPrefix>store</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Date *</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Currency</mat-label>
+      <mat-select formControlName="currency">
+        <mat-option value="USD">USD</mat-option>
+        <mat-option value="EUR">EUR</mat-option>
+        <mat-option value="GBP">GBP</mat-option>
+        <mat-option value="CAD">CAD</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button 
+    mat-raised-button 
+    color="primary" 
+    (click)="onSubmit()"
+    [disabled]="loading || transactionForm.invalid">
+    {{ loading ? 'Creating...' : 'Create Transaction' }}
+  </button>
+</mat-dialog-actions>
+
