@@ -1,36 +1,61 @@
-<div class="dashboard-container">
-  <h1>Dashboard</h1>
+<div class="dashboard-container container">
+  <header class="dashboard-header">
+    <h1>Dashboard Overview</h1>
+    <p class="subtitle">Monitor transactions and alerts in real-time</p>
+  </header>
 
-  <div *ngIf="loading" class="loading">Loading dashboard...</div>
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+    <span>Loading dashboard data...</span>
+  </div>
 
   <div *ngIf="!loading && stats" class="stats-grid">
-    <mat-card>
+    <mat-card class="stat-card">
       <mat-card-content>
-        <div class="stat-value">{{ stats.transactions?.total || 0 }}</div>
-        <div class="stat-label">Total Transactions</div>
+        <div class="stat-icon primary">
+          <mat-icon>receipt_long</mat-icon>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value">{{ stats.transactions?.total || 0 }}</div>
+          <div class="stat-label">Total Transactions</div>
+        </div>
       </mat-card-content>
     </mat-card>
 
-    <mat-card>
+    <mat-card class="stat-card">
       <mat-card-content>
-        <div class="stat-value">${{ (stats.transactions?.totalAmount || 0).toFixed(2) }}</div>
-        <div class="stat-label">Total Amount</div>
+        <div class="stat-icon success">
+          <mat-icon>attach_money</mat-icon>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value">${{ (stats.transactions?.totalAmount || 0).toFixed(2) }}</div>
+          <div class="stat-label">Total Amount</div>
+        </div>
       </mat-card-content>
     </mat-card>
 
-    <mat-card>
+    <mat-card class="stat-card">
       <mat-card-content>
-        <div class="stat-value error">{{ stats.transactions?.anomalies || 0 }}</div>
-        <div class="stat-label">Anomalies</div>
+        <div class="stat-icon danger">
+          <mat-icon>warning</mat-icon>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value error">{{ stats.transactions?.anomalies || 0 }}</div>
+          <div class="stat-label">Anomalies Detected</div>
+        </div>
       </mat-card-content>
     </mat-card>
 
-    <mat-card>
+    <mat-card class="stat-card">
       <mat-card-content>
-        <div class="stat-value warning">{{ stats.alerts?.unread || 0 }}</div>
-        <div class="stat-label">Unread Alerts</div>
+        <div class="stat-icon warning">
+          <mat-icon>notifications</mat-icon>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value warning">{{ stats.alerts?.unread || 0 }}</div>
+          <div class="stat-label">Unread Alerts</div>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
 </div>
-

@@ -8,12 +8,14 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
-  currentUser$ = this.authService.currentUser$;
+  currentUser$;
 
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    this.currentUser$ = this.authService.currentUser$;
+  }
 
   logout(): void {
     this.authService.logout();

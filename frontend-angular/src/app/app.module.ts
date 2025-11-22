@@ -32,6 +32,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatChipsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatNativeDateModule,
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     AuthService,
