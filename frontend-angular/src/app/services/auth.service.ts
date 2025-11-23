@@ -1,7 +1,9 @@
+```typescript
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 export interface User {
   id: number;
@@ -32,7 +34,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login`, {
+    return this.http.post<AuthResponse>(`${ this.apiUrl } /auth/login`, {
       email,
       password
     }).pipe(
@@ -44,7 +46,7 @@ export class AuthService {
   }
 
   signup(userData: any): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/signup`, userData).pipe(
+    return this.http.post<AuthResponse>(`${ this.apiUrl } /auth/signup`, userData).pipe(
       tap(response => {
         localStorage.setItem('token', response.accessToken);
         this.loadUser();
@@ -59,7 +61,7 @@ export class AuthService {
   }
 
   getCurrentUser(): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/auth/me`).pipe(
+    return this.http.get<User>(`${ this.apiUrl } /auth/me`).pipe(
       tap(user => this.currentUserSubject.next(user))
     );
   }

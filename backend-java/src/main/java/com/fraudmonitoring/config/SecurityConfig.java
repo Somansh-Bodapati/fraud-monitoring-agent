@@ -63,18 +63,22 @@ public class SecurityConfig {
 
         @Bean
         public CorsConfigurationSource corsConfigurationSource() {
-                CorsConfiguration config = new CorsConfiguration();
-                config.setAllowCredentials(true);
-                config.setAllowedOrigins(List.of("http://localhost:4200"));
-                config.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization",
-                                "X-Requested-With", "Access-Control-Request-Method", "Access-Control-Request-Headers"));
-                config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-                config.setExposedHeaders(Arrays.asList("Authorization", "Access-Control-Allow-Origin",
-                                "Access-Control-Allow-Credentials"));
-                config.setMaxAge(3600L);
+                CorsConfiguration configuration = new CorsConfiguration();
+
+                // Allow both local and production origins
+                configuration.setAllowedOrigins(Arrays.asList(
+                                "http://localhost:4200",
+                                "https://*.netlify.app", // Will match your Netlify domain
+                                "https://*.netlify.com" // Alternative Netlify domain pattern
+                ));
+
+                configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+                configuration.setAllowedHeaders(Arrays.asList("*"));
+                configuration.setAllowCredentials(true);
+                configuration.setMaxAge(3600L);
 
                 UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-                source.registerCorsConfiguration("/**", config);
+                source.registerCorsConfiguration("/**", configuration);
                 return source;
         }
 

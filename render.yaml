@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: fraud-monitoring-backend
+    runtime: java
+    plan: free
+    buildCommand: cd backend-java && mvn clean package -DskipTests
+    startCommand: cd backend-java && java -jar target/fraud-monitoring-agent-1.0.0.jar
+    envVars:
+      - key: APP_JWT_SECRET
+        generateValue: true
+      - key: APP_JWT_EXPIRATION
+        value: 86400000
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: PORT
+        value: 8000
