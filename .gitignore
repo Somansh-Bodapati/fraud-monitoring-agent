@@ -39,6 +39,23 @@ dist/
 build/
 *.egg-info/
 
+# Java/Maven
+backend-java/target/
+target/
+*.jar
+*.war
+*.class
+
+# Angular
+frontend-angular/.angular/
+frontend-angular/dist/
+.angular/
+
+# Database
+*.mv.db
+fraud_monitoring.mv.db
+fraud_monitoring.trace.db
+
 # OS
 .DS_Store
 Thumbs.db
