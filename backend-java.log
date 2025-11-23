@@ -1,1 +1,19 @@
-./start-java.sh: line 22: mvn: command not found
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/opt/homebrew/Cellar/maven/3.9.11/libexec/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[ERROR] [ERROR] Some problems were encountered while processing the POMs:
+[FATAL] Non-parseable POM /Users/somansh/Development/fraud-monitoring-agent/backend-java/pom.xml: entity reference names can not start with character ' ' (position: START_TAG seen ...<name>Expense & ... @18:21)  @ line 18, column 21
+ @ 
+[ERROR] The build could not read 1 project -> [Help 1]
+[ERROR]   
+[ERROR]   The project  (/Users/somansh/Development/fraud-monitoring-agent/backend-java/pom.xml) has 1 error
+[ERROR]     Non-parseable POM /Users/somansh/Development/fraud-monitoring-agent/backend-java/pom.xml: entity reference names can not start with character ' ' (position: START_TAG seen ...<name>Expense & ... @18:21)  @ line 18, column 21 -> [Help 2]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
+[ERROR] [Help 2] http://cwiki.apache.org/confluence/display/MAVEN/ModelParseException

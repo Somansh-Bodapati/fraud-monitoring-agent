@@ -101,3 +101,21 @@
     }
   }
 }
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.chart-card {
+  background: var(--surface-color);
+  border-radius: 16px;
+  padding: 1.5rem;
+  min-height: 400px;
+}
+
+.chart-card canvas {
+  max-height: 350px;
+}

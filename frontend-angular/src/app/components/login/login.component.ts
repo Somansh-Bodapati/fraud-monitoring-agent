@@ -29,7 +29,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.loading = true;
       this.error = '';
-      
+
       this.authService.login(
         this.loginForm.value.email,
         this.loginForm.value.password
@@ -38,7 +38,8 @@ export class LoginComponent {
           this.router.navigate(['/']);
         },
         error: (err) => {
-          this.error = err.error?.detail || 'Login failed';
+          console.error('Login error:', err);
+          this.error = err.error?.message || err.error?.detail || err.message || 'Login failed. Please check your credentials.';
           this.loading = false;
         }
       });

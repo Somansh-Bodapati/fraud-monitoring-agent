@@ -11,18 +11,19 @@ public class TransactionCreateRequest {
     @NotNull
     @Positive
     private Double amount;
-    
+
     private String currency = "USD";
-    
+
     @NotNull
     private LocalDateTime date;
-    
+
     private String description;
-    
+
     private String merchant;
-    
+
+    private String category;
+
     private String source = "manual";
-    
+
     private Long receiptId;
 }
-

@@ -58,4 +58,21 @@
       </mat-card-content>
     </mat-card>
   </div>
+
+  <!-- Charts Section -->
+  <div *ngIf="!loading && stats" class="charts-grid">
+    <mat-card class="chart-card">
+      <mat-card-content>
+        <canvas baseChart [data]="categoryChartData" [type]="'pie'" [options]="categoryChartOptions">
+        </canvas>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="chart-card">
+      <mat-card-content>
+        <canvas baseChart [data]="spendChartData" [type]="'bar'" [options]="spendChartOptions">
+        </canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

@@ -43,6 +43,15 @@ export class AuthService {
     );
   }
 
+  signup(userData: any): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/signup`, userData).pipe(
+      tap(response => {
+        localStorage.setItem('token', response.accessToken);
+        this.loadUser();
+      })
+    );
+  }
+
   logout(): void {
     localStorage.removeItem('token');
     this.currentUserSubject.next(null);

@@ -25,6 +25,7 @@ export interface TransactionCreateRequest {
   date: string;
   description?: string;
   merchant?: string;
+  category?: string;
   source?: string;
   receiptId?: number;
 }
@@ -35,7 +36,7 @@ export interface TransactionCreateRequest {
 export class TransactionService {
   private apiUrl = 'http://localhost:8000/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getTransactions(page: number = 0, size: number = 100): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/transactions?page=${page}&size=${size}`);
@@ -47,6 +48,18 @@ export class TransactionService {
 
   createTransaction(transaction: TransactionCreateRequest): Observable<Transaction> {
     return this.http.post<Transaction>(`${this.apiUrl}/transactions`, transaction);
+  }
+
+  updateTransactionStatus(id: number, status: string): Observable<Transaction> {
+    return this.http.patch<Transaction>(`${this.apiUrl}/transactions/${id}/status`, { status });
+  }
+
+  deleteTransaction(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/transactions/${id}`);
+  }
+
+  getEntitlements(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/entitlements/actions`);
   }
 }
 

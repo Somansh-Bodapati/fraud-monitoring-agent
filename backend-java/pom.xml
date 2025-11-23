@@ -15,7 +15,7 @@
     <groupId>com.fraudmonitoring</groupId>
     <artifactId>fraud-monitoring-agent</artifactId>
     <version>1.0.0</version>
-    <name>Expense & Fraud Monitoring Agent</name>
+    <name>Expense &amp; Fraud Monitoring Agent</name>
     <description>Autonomous AI agent system for expense monitoring and fraud detection</description>
     
     <properties>

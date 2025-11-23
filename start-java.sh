@@ -18,19 +18,34 @@ else
     MVN_CMD="mvn"
 fi
 
+# Configure Java 17 for the build
+export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# Check if Maven is installed
+if ! command -v $MVN_CMD &> /dev/null; then
+    echo "❌ Maven ('$MVN_CMD') not found in PATH!"
+    echo "   Please install Maven: brew install maven"
+    echo "   Or ensure it is in your PATH."
+    exit 1
+fi
+
 echo "🔧 Starting Spring Boot backend on http://localhost:8000..."
-$MVN_CMD spring-boot:run > ../backend-java.log 2>&1 &
+# Run in background but keep stdout/stderr attached to console
+$MVN_CMD spring-boot:run &
 BACKEND_PID=$!
 echo "✅ Backend started (PID: $BACKEND_PID)"
+echo "   Logs will appear below..."
 echo ""
 
-# Wait for backend to start
-sleep 10
+# Wait for backend to initialize (simple sleep)
+sleep 15
 
 # Frontend (Angular)
 cd ../frontend-angular
 if [ ! -f "package.json" ]; then
     echo "❌ Angular project not found!"
+    kill $BACKEND_PID
     exit 1
 fi
 

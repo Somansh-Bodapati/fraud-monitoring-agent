@@ -3,36 +3,50 @@
 
 :root {
   /* Modern Color Palette - Light Mode */
-  --primary-color: #4f46e5; /* Indigo 600 */
-  --primary-hover: #4338ca; /* Indigo 700 */
-  --secondary-color: #10b981; /* Emerald 500 */
-  --accent-color: #f59e0b; /* Amber 500 */
-  --danger-color: #ef4444; /* Red 500 */
-  
-  --background-color: #f3f4f6; /* Gray 100 */
+  --primary-color: #4f46e5;
+  /* Indigo 600 */
+  --primary-hover: #4338ca;
+  /* Indigo 700 */
+  --secondary-color: #10b981;
+  /* Emerald 500 */
+  --accent-color: #f59e0b;
+  /* Amber 500 */
+  --danger-color: #ef4444;
+  /* Red 500 */
+
+  --background-color: #f3f4f6;
+  /* Gray 100 */
   --surface-color: #ffffff;
-  --text-primary: #111827; /* Gray 900 */
-  --text-secondary: #4b5563; /* Gray 600 */
-  --border-color: #e5e7eb; /* Gray 200 */
-  
+  --text-primary: #111827;
+  /* Gray 900 */
+  --text-secondary: #4b5563;
+  /* Gray 600 */
+  --border-color: #e5e7eb;
+  /* Gray 200 */
+
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  
+
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
-  
+
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark Mode Overrides */
-    --background-color: #111827; /* Gray 900 */
-    --surface-color: #1f2937; /* Gray 800 */
-    --text-primary: #f9fafb; /* Gray 50 */
-    --text-secondary: #d1d5db; /* Gray 300 */
-    --border-color: #374151; /* Gray 700 */
+    --background-color: #111827;
+    /* Gray 900 */
+    --surface-color: #1f2937;
+    /* Gray 800 */
+    --text-primary: #f9fafb;
+    /* Gray 50 */
+    --text-secondary: #d1d5db;
+    /* Gray 300 */
+    --border-color: #374151;
+    /* Gray 700 */
   }
 }
 
@@ -59,6 +73,30 @@ body {
   padding: 0 1rem;
 }
 
+.mat-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 24px;
+  color: #000000;
+}
+
+mat-card {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+mat-card-title,
+mat-card-content,
+mat-card-header {
+  color: #000000 !important;
+}
+
+th,
+td {
+  color: #000000 !important;
+}
+
 .card {
   background-color: var(--surface-color);
   border-radius: var(--radius-lg);
@@ -78,21 +116,29 @@ body {
   transition: all 0.2s;
   border: none;
   outline: none;
-  
+
   &.btn-primary {
     background-color: var(--primary-color);
     color: white;
-    &:hover { background-color: var(--primary-hover); }
+
+    &:hover {
+      background-color: var(--primary-hover);
+    }
   }
-  
+
   &.btn-danger {
     background-color: var(--danger-color);
     color: white;
-    &:hover { opacity: 0.9; }
+
+    &:hover {
+      opacity: 0.9;
+    }
   }
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   width: 100%;
   padding: 0.5rem 0.75rem;
   border-radius: var(--radius-md);
@@ -100,11 +146,10 @@ input, select, textarea {
   background-color: var(--surface-color);
   color: var(--text-primary);
   transition: border-color 0.2s, ring 0.2s;
-  
+
   &:focus {
     border-color: var(--primary-color);
     outline: 2px solid transparent;
     box-shadow: 0 0 0 2px var(--primary-color);
   }
 }
-

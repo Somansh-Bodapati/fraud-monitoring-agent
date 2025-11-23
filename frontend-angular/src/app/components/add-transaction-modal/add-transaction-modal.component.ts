@@ -12,6 +12,22 @@ export class AddTransactionModalComponent {
   transactionForm: FormGroup;
   loading = false;
 
+  categories = [
+    'SOFTWARE_LICENSES',
+    'CLOUD_SERVICES',
+    'DEVELOPMENT_TOOLS',
+    'PAYROLL',
+    'OFFICE_SUPPLIES',
+    'MARKETING',
+    'CONSULTING',
+    'TRAINING',
+    'HARDWARE',
+    'TRAVEL',
+    'OTHER'
+  ];
+
+  submitting = false;
+
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddTransactionModalComponent>,
@@ -21,20 +37,28 @@ export class AddTransactionModalComponent {
       amount: ['', [Validators.required, Validators.min(0.01)]],
       merchant: [''],
       description: [''],
+      category: ['OTHER', Validators.required],
       date: [new Date(), Validators.required],
       currency: ['USD']
     });
   }
 
-  onSubmit(): void {
-    if (this.transactionForm.valid) {
+  onSubmit(event?: Event): void {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    if (this.transactionForm.valid && !this.loading && !this.submitting) {
       this.loading = true;
+      this.submitting = true;
       const formValue = this.transactionForm.value;
-      
+
       this.transactionService.createTransaction({
         amount: formValue.amount,
         merchant: formValue.merchant,
         description: formValue.description,
+        category: formValue.category,
         date: formValue.date.toISOString(),
         currency: formValue.currency,
         source: 'manual'
@@ -44,6 +68,7 @@ export class AddTransactionModalComponent {
         },
         error: () => {
           this.loading = false;
+          this.submitting = false;
         }
       });
     }

@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
@@ -19,6 +20,7 @@ import { AuthService } from './services/auth.service';
 import { TransactionService } from './services/transaction.service';
 import { AlertService } from './services/alert.service';
 import { DashboardService } from './services/dashboard.service';
+import { CategoryFormatPipe } from './pipes/category-format.pipe';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,17 +35,20 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    SignupComponent,
     DashboardComponent,
     TransactionsComponent,
     AlertsComponent,
     ReportsComponent,
     LayoutComponent,
-    AddTransactionModalComponent
+    AddTransactionModalComponent,
+    CategoryFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatNativeDateModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgChartsModule
   ],
   providers: [
     AuthService,

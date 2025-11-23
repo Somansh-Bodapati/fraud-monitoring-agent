@@ -11,23 +11,29 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class ClassifierAgentService {
-    
+
     private final TransactionRepository transactionRepository;
     private final OpenAIService openAIService;
-    
+
     @Value("${app.agent.confidence-threshold:0.7}")
     private Double confidenceThreshold;
-    
+
     public void classifyTransaction(Transaction transaction) {
         try {
-            String category = openAIService.classifyTransaction(transaction);
-            transaction.setCategory(category);
-            transaction.setClassificationConfidence(0.85); // Mock confidence
-            transactionRepository.save(transaction);
-            log.info("Transaction {} classified as: {}", transaction.getId(), category);
+            // Only classify if category is not already set (manual transactions have
+            // categories from UI)
+            if (transaction.getCategory() == null || transaction.getCategory().isEmpty() ||
+                    "OTHER".equals(transaction.getCategory())) {
+                String category = openAIService.classifyTransaction(transaction);
+                transaction.setCategory(category);
+                transaction.setClassificationConfidence(0.85); // Mock confidence
+                transactionRepository.save(transaction);
+                log.info("Transaction {} classified as: {}", transaction.getId(), category);
+            } else {
+                log.info("Transaction {} already has category: {}", transaction.getId(), transaction.getCategory());
+            }
         } catch (Exception e) {
             log.error("Error classifying transaction: {}", transaction.getId(), e);
         }
     }
 }
-
